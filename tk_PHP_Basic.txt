@@ -1,0 +1,144 @@
+//////////////////////////////////////////////////////// PHP Cơ bản////////////////////////////////////////////////////////
+
+- Sử dụng trước khi viết các hàm biến !
+     Đầu File  -> <?php 
+     Cuối File -> ?>
+
+- Trước khi sử dụng các hàm, biến phải có dấu $
+     vd: $tung=10;
+     ==> đằng  trước mỗi biến , tham sô, hàm.. đều có dấu             $  
+     ==> khi  kết thúc mỗi dòng hay tham số , biến hàm đều có dấu     ;
+     ====> Cách dùng gần giống C++
+
+- In ra (echo) 
+     -> echo có thể dùng cho IDE của PHP nó cũng có thể kết hợp HTML  vào cùng PHP
+
+     vd: IDE
+          <?php
+               $tung=2004;
+               echo('toi la tung '. $tung);
+          ?>
+     --> in ra cùng lúc 2 biến thì dùng dấu .
+
+
+     vd: HTML
+          <?php
+               $tung=2004;
+               echo("<h1>toi la tung $tung </h1>");
+          ?>
+          ------------------------------------------------------------------------------------------------------------------------------
+          * Lưu ý: Nếu dùng 1 ngoặc nhọn thì nó sẽ in ra là string 
+                            2 ngoặc nhọn thì nó sẽ in ra cả biến , hàm....
+
+                    vd:
+                         $tung='tungcuacace';
+                         // 1 ngoặc
+                         echo('$tung');
+                         // 2 ngoặc
+                         echo("$tung");
+
+                         --> Kết quả: $tung
+                                      tungcuacace
+     
+- Hằng và biến 
+
+     - Hằng : define({Ten_Bien},{Gia_tri},{bool});            bool là true hoặc false
+               vd: 
+                    define('tung',20,true);            true để không phân tên  hằng là in hoa hay  in thường
+                    echo(tung)
+
+                    --> Kết quả: 20
+          * Lưu ý: Hằng thì không thể thay  thế Gia_tri của nó .
+
+     - Biến : 
+               vd:
+                    $Bien=30;
+                    echo $Bien;
+
+                    --> Kết quả: 30;
+          * Lưu ý: Hiến có thể thay thế được Gia_tri ;
+
+     ==>  Sử khác nhau  của hằng và biến là: " hằng khôg thể thay  thế giá trị của nó được"
+                                             " biến thì có thể thay thế giá trị của nó được"
+
+=========================================================================================================================
+- Câu điều kiện ( if elseif else)
+     ===> các câu điều kiện này cũng giống như các ngôn ngữ khác
+          vd:
+               <?php
+                    $a=5;
+                    // Cách 1 viết if else bình thường
+                    if($a>10){
+                         echo('a lon hon 10');
+
+                    }elseif($a==5){
+                         echo('a == 5');
+                    }else{
+                         echo('a < 5');
+                    }
+                    // Cách 2 Viết if else   ngắn gọn
+                    $a=$a==5? "\n\n==5" : '!=5';
+                    echo $a;
+               ?>
+
+          * Cách viết ngắn gọn dành thích hợp cho   trả về 1 kết quả....
+
+=========================================================================================================================
+
+- String ( sử lý  chuỗi)
+
+          + strlen() : Kiểm tra độ dài của chuỗi.
+               vd:
+                    $a = 'tung';
+                    echo('Độ dài chuỗi: '.strlen($a)); 
+                    -->Kết quả: Độ dài chuỗi 4
+          + str_word_count() : Đếm số từ trong string
+               vd:
+                    $a = 'tung thanh';
+                    echo(strlen('Số từ: '.$a)); 
+                    -->Kết quả: 2
+          + strrev() : Đổi ngược lại chữ
+               --> Ví dụ  như trên string bên trong đóng mở ngoặc.
+
+          + strpos({STRING} , {CẦN_TÌM}) : Tìm chuỗi  trả về vị trí
+               vd:
+                    $a = 'tung thanh nguyen';
+                    echo(strpos($a,'tung')); 
+                    -->Kết quả: 0
+
+          + str_replace({Bị_Thay} ,{Chữ_Thay} , {String_gốc}) : Thay thế string\
+               vd:
+                    $a = 'tung thanh tung';
+                    echo(str_replace('tung' , 'nguyen' , $a)); 
+
+                    -->Kết quả: nguyen thanh tung
+     *  Còn rất nhiều các hàm khác nữa trong string có  thể tham khảo thêm 
+     Link: https://www.w3schools.com/php/php_ref_string.asp
+
+=========================================================================================================================
+
+- Kiểu dữ liệu(String, Array,Object)
+          + var_dump() : Hiện thị thông tin kiểu dữ liệu trong PHP
+               vd:
+                    <?php
+                         $a = 10;
+                         $b = "Hello";
+                         $c = array(1, 2, 3);
+
+                         var_dump($a);
+                         var_dump($b);
+                         var_dump($c);
+
+                    -->  Kết quả:
+                                   int(10)
+                                   string(5) "Hello"
+                                   array(3) {       
+                                   [0]=>
+                                   int(1)
+                                   [1]=>
+                                   int(2)
+                                   [2]=>
+                                   int(3)
+                                   }
+
+                                   
