@@ -40,7 +40,7 @@
                          --> Kết quả: $tung
                                       tungcuacace
      
-- Hằng và biến 
+- Hằng và biến (hang ham bien)
 
      - Hằng : define({Ten_Bien},{Gia_tri},{bool});            bool là true hoặc false
                vd: 
@@ -95,8 +95,14 @@
           + str_word_count() : Đếm số từ trong string
                vd:
                     $a = 'tung thanh';
-                    echo(strlen('Số từ: '.$a)); 
+                    echo(str_word_count$a); 
                     -->Kết quả: 2
+               
+               -  ngoài ra ta cũng có thể count() đếm giá trịcủa arr[]
+                    vd:
+                         $arr=['tung','bi','quoc']; 
+                         echo(count($arr));
+
           + strrev() : Đổi ngược lại chữ
                --> Ví dụ  như trên string bên trong đóng mở ngoặc.
 
@@ -140,5 +146,93 @@
                                    [2]=>
                                    int(3)
                                    }
+=========================================================================================================================
 
-                                   
+- Toán tử 
+               + cổng
+               -  trừ
+               * nhân
+               / chia 
+               && phép  so  sánh với  nhau
+               ||  phép so  sánh một trong hai cùng đúng 
+=========================================================================================================================
+
+- Switch : Câu lệnh giống như C++ 
+     vd:
+          <?php
+               $nhap=20;
+               switch($nhap){
+                    case 1:
+                         echo('tung');
+                         break;
+                    case 2:
+                         echo('tung2');
+                         break;
+                    // trường hợp không có thì in ra default; 
+                    default:
+                         echo('deo co ');
+               }
+
+-Vòng lặp For()
+     --> Dùng như các ngôn ngữ lập trình khác lặp đi  lặp  lại  cho đến một  số n  nhất định
+     ===> Dùng giống  như  C++
+     vd:
+          <?php
+               $nhap=20;
+               for($i=0;$i<$nhap;$i++){
+                    echo("\ntung $i");
+               }
+          ?>
+
+- Vòng Lặp while();v kiểm tra rồi chạy
+     --> Dùng như các ngôn ngữ lập trình khác lặp đi  lặp  lại  cho đến một  số n  nhất định
+     ===> Dùng giống  như  C++
+     vd:
+          <?php
+               $nhap=20;
+               while($nhap!=0){
+                    echo "\n tung $nhap";
+                    $nhap--;
+               }
+
+- Vòng lặp Do-While():  Chạy  rồi kiểm tra sau
+     vd:
+          <?php
+               $nhap=0;
+               do{
+               echo("$nhap");
+               $nhap++;
+               }while($nhap<10);
+
+- Vòng lặp foreach(): Vòng lặp lấy các giá trị
+     * Sự khác nhau  của for và foreach là: "for: Cần chuyền tham số để chạy được bao  nhiêu lần"
+                                            " foreach:  không cần chuyền tham số nó chỉ cần chạy đến hết arr, object"
+               Vd:
+                    <?php
+                         // sử khác nhau  của  for each 
+                         $arr=['tung','bi','quoc']; 
+                         // for each
+                         foreach( $arr as $value){
+                              echo(" \nin ra $value");
+                         }
+                         // for
+                         for($i=0;$i<3;$i++){
+                              echo("\n in ra: $arr[$i]");
+                         }
+
+     ==> ForEach nó giống trong hàm JavaScript
+
+
+=========================================================================================================================
+-funciton(): Nó là một hàm trong js để có thể chạy lại được giống như ngôn ngữ C++
+
+- Hàm isset() : Cho phép kiểm tra biến hay  hàm có tồn tại không trả về ( true/false)
+          Vd:
+               $arr=['tung','bi','quoc']; 
+               if(isset($arr)== true){
+                    echo('ton  tai');
+               }else{
+                    echo('khong ton tia');
+               }
+
+          
