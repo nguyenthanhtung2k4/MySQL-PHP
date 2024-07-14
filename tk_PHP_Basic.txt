@@ -1,3 +1,35 @@
+- Muốn hàm chở lên nghiêm  ngặt hơn cần hàm để kiểm tra nó:
+          <?php
+               declare(strict_types=1);
+               // có  hàm trên nó sẽ kiểm tra được kiểu dữ liệu đúng để thực hiện.
+
+          ?>
+
+          VD:
+                    function add1(int $x, int $y) {
+                         return $x + $y;
+                    }
+                    echo add1(5, 3); // Hiển thị 8
+                    echo add1("5", 3); // Lỗi: Argument 1 passed to add() must be of the type int, string given
+   ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------            
+- global :(Biến toàn cục) nó cho  phép bạn  sử dụng gọi ra bên ngoài hàm.
+          VD: sư dụng global  và không sử dụng  global
+                    <?php declare(strict_types=1);
+                    //  Sử dụng global
+                         $tung=10;$bi=30;
+                    function add(){
+                         global $tung,$bi ;
+                         $tung=$tung+$bi;
+                    }
+                    /// Không sử dụng biến global sẽ không thể gọi ra ngoài bạn  cần phải return kết quả ra và không dùng được biến đó bên ngoài.
+                    function add1(){
+                         $tung1=50;$bi1=50;
+                         return $tung1+$bi1;
+                    }
+                    add();
+                    echo($tung);
+                    echo("\n".add1());
+
 //////////////////////////////////////////////////////// PHP Cơ bản////////////////////////////////////////////////////////
 
 - Sử dụng trước khi viết các hàm biến !
@@ -223,10 +255,11 @@
      ==> ForEach nó giống trong hàm JavaScript
 
 
-=========================================================================================================================
+=================================================================CÁC HÀM QUAN TRỌNG HAY  DÙNG============================================
+
 -funciton(): Nó là một hàm trong js để có thể chạy lại được giống như ngôn ngữ C++
 
-- Hàm isset() : Cho phép kiểm tra biến hay  hàm có tồn tại không trả về ( true/false)
+- Hàm isset() : Cho phép kiểm tra biến hay  hàm có tồn tại không trả về - kiểu dữ liệu( true/false)
           Vd:
                $arr=['tung','bi','quoc']; 
                if(isset($arr)== true){
@@ -235,4 +268,5 @@
                     echo('khong ton tia');
                }
 
+- 
           
