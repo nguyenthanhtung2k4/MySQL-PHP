@@ -1,3 +1,5 @@
+//////////////////////////////////////////////////////// Một số câu lệnh , hàm cần biết ////////////////////////////////////////////////////////
+
 - Muốn hàm chở lên nghiêm  ngặt hơn cần hàm để kiểm tra nó:
           <?php
                declare(strict_types=1);
@@ -29,6 +31,35 @@
                     add();
                     echo($tung);
                     echo("\n".add1());
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------            
+
+- Sử dụng Mảng: Cách sử dụng (arr, mang)
+          vd:
+               // Php với  array(mảng)
+               // cach 1
+               $arr=['tung','nguyen','thanh'];
+               echo($arr[0]);
+               // cách2
+               $arr2=array('tung','nguyen','thanh');
+               echo($arr2[0]);
+               // in ra tất cả giá trị trong mảng
+               print_r($arr2);
+               // them phan tu
+               $arra2[]='them';
+               print_r($arr2);
+               // xóa phần tử unset()
+
+
+- Sử dụng Object: cách sử dụng  object (json)
+          * Lưu ý php sử dụng object(json) khác hơn so  với C++ , JavaScript
+          vd:
+               // Php  với object (json)
+               $ob=array('name'=>'tung','class'=>'cntt');
+               echo($ob['name']);
+                    // in ra tất cả giá trị trong mảng
+                    print_r($ob);
+
+===> Arrary và Object của php khởi tạo  hàm hơi khác nhau một tý, nhưng khi lấy giữ liệu  từ Arrary và Object giống như khác ngôn ngữ khácc.
 
 //////////////////////////////////////////////////////// PHP Cơ bản////////////////////////////////////////////////////////
 
@@ -42,36 +73,62 @@
      ==> khi  kết thúc mỗi dòng hay tham số , biến hàm đều có dấu     ;
      ====> Cách dùng gần giống C++
 
-- In ra (echo) 
+- In ra (echo())  có hai  cách in  xem ở thêm ở phần print_r()
      -> echo có thể dùng cho IDE của PHP nó cũng có thể kết hợp HTML  vào cùng PHP
 
-     vd: IDE
-          <?php
-               $tung=2004;
-               echo('toi la tung '. $tung);
-          ?>
-     --> in ra cùng lúc 2 biến thì dùng dấu .
+               vd: IDE
+                    <?php
+                         $tung=2004;
+                         echo('toi la tung '. $tung);
+                    ?>
+               --> in ra cùng lúc 2 biến thì dùng dấu .
 
 
-     vd: HTML
-          <?php
-               $tung=2004;
-               echo("<h1>toi la tung $tung </h1>");
-          ?>
-          ------------------------------------------------------------------------------------------------------------------------------
-          * Lưu ý: Nếu dùng 1 ngoặc nhọn thì nó sẽ in ra là string 
-                            2 ngoặc nhọn thì nó sẽ in ra cả biến , hàm....
+               vd: HTML
+                    <?php
+                         $tung=2004;
+                         echo("<h1>toi la tung $tung </h1>");
+                    ?>
+                    ------------------------------------------------------------------------------------------------------------------------------
+                    * Lưu ý: Nếu dùng 1 ngoặc nhọn thì nó sẽ in ra là string 
+                                   2 ngoặc nhọn thì nó sẽ in ra cả biến , hàm....
 
-                    vd:
-                         $tung='tungcuacace';
-                         // 1 ngoặc
-                         echo('$tung');
-                         // 2 ngoặc
-                         echo("$tung");
+                              vd:
+                                   $tung='tungcuacace';
+                                   // 1 ngoặc
+                                   echo('$tung');
+                                   // 2 ngoặc
+                                   echo("$tung");
 
-                         --> Kết quả: $tung
-                                      tungcuacace
-     
+                                   --> Kết quả: $tung
+                                             tungcuacace
+
+- In ra  (print_r())  có hai cách dùng để in ra tham khảo thêm echo()
+
+               Vd:
+                    $sinhVien = array(
+                    "ten" => "Nguyễn Văn A",
+                    "tuoi" => 20,
+                    "lop" => "12A"
+                    );
+
+                    echo $sinhVien; // Xuất: Array ( [ten] => Nguyễn Văn A [tuoi] => 20 [lop] => 12A )
+                    print_r($sinhVien); // Xuất: 
+                    Array
+                    (
+                    [ten] => Nguyễn Văn A
+                    [tuoi] => 20
+                    [lop] => 12A
+                    )
+
+          * Chú Ý: 
+                    SỰ KHÁC NHAU  CỦA echo()  và print_r()
+                         + echo() : cho  phép bạn  in ra  kiểu string  và số.., nhưng không in đc kí hiệu  bất kì
+                         + print_r(): Nó lại cho  phép bạn  in ra kiểu bất kì vậy lên được dùng nhiều trong arraray  và object.
+
+
+
+
 - Hằng và biến (hang ham bien)
 
      - Hằng : define({Ten_Bien},{Gia_tri},{bool});            bool là true hoặc false
@@ -152,10 +209,28 @@
                     -->Kết quả: nguyen thanh tung
      *  Còn rất nhiều các hàm khác nữa trong string có  thể tham khảo thêm 
      Link: https://www.w3schools.com/php/php_ref_string.asp
+          ------------------------------------------------------------------------------------------------------------------------------
+     - explode() : Chuyển dữ liệu sang String 
 
+                    Vd:
+                              $str='1.02.2025';
+                              $arr=explode('.',$str);
+                              print(var_dump($arr));
+                                             
+                                             Kết quả:
+                                                       array(3) { 
+                                                            [0]=>
+                                                            string(2) "1."      
+                                                            [1]=>
+                                                            string(3) "2.2"     
+                                                            [2]=>
+                                                            string(2) "25"      
+                                                            array(3)
+                                                       {
+                                                  
 =========================================================================================================================
 
-- Kiểu dữ liệu(String, Array,Object)
+- Kiểm tra Kiểu dữ liệu(String, Array,Object)
           + var_dump() : Hiện thị thông tin kiểu dữ liệu trong PHP
                vd:
                     <?php
@@ -268,5 +343,29 @@
                     echo('khong ton tia');
                }
 
-- 
-          
+- unset() :   : Cho  phép bạn xóa bỏ 1 biến hoặc nhiều biến (delete ,  xoa bo)
+          Vd:
+               // Php  với object (json)
+               $ob=array('name'=>'tung','class'=>'cntt');
+               unset($ob['name']);
+               print_r($ob);
+               // arr
+               $arr=array('name','tung','class','cntt');
+               unset($arr[0]);
+               print_r($arr);
+
+================================================================= Sắp Xếp (sort)============================================
+ - sort() : Sắp xếp theo  thứ tự  tăng dần
+ - rsort() : Sắp xếp theo  thứ tự  giảm dần
+
+               VD: tăng dần và giảm dần
+                              $mang=array('a','c','b') ;
+                              // Sắp xếp tăng dần, kí tự a-z
+                              sort($mang);
+                              echo(print_r($mang));
+                              // Sắp xếp giảm dần, kí tự z-a
+                              rsort($mang);
+                              echo(print_r($mang));
+
+================================================================= Chuyển đổi dữ liệu============================================
+- exlode{Giá_trị} , {string}) : Cho  phép bạn  chuyểm dữ liệu  từ array sang string
