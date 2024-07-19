@@ -13,24 +13,7 @@
                     }
                     echo add1(5, 3); // Hiển thị 8
                     echo add1("5", 3); // Lỗi: Argument 1 passed to add() must be of the type int, string given
-   ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------            
-- global :(Biến toàn cục) nó cho  phép bạn  sử dụng gọi ra bên ngoài hàm.
-          VD: sư dụng global  và không sử dụng  global
-                    <?php declare(strict_types=1);
-                    //  Sử dụng global
-                         $tung=10;$bi=30;
-                    function add(){
-                         global $tung,$bi ;
-                         $tung=$tung+$bi;
-                    }
-                    /// Không sử dụng biến global sẽ không thể gọi ra ngoài bạn  cần phải return kết quả ra và không dùng được biến đó bên ngoài.
-                    function add1(){
-                         $tung1=50;$bi1=50;
-                         return $tung1+$bi1;
-                    }
-                    add();
-                    echo($tung);
-                    echo("\n".add1());
+
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------            
 
 - Sử dụng Mảng: Cách sử dụng (arr, mang)
@@ -172,7 +155,7 @@
 
           * Cách viết ngắn gọn dành thích hợp cho   trả về 1 kết quả....
 
-=========================================================================================================================
+=====================================================================string String STRING====================================================
 
 - String ( sử lý  chuỗi)
 
@@ -209,7 +192,9 @@
                     -->Kết quả: nguyen thanh tung
      *  Còn rất nhiều các hàm khác nữa trong string có  thể tham khảo thêm 
      Link: https://www.w3schools.com/php/php_ref_string.asp
-          ------------------------------------------------------------------------------------------------------------------------------
+     
+     ------------------------------------------------------------------------------------------------------------------------------
+     
      - explode() : Chuyển dữ liệu sang String 
 
                     Vd:
@@ -228,6 +213,8 @@
                                                             array(3)
                                                        {
                                                   
+     ----------------------------------------------------------------------SỬ LÝ FILE (read file | write file)--------------------------------------------------------
+     
 =========================================================================================================================
 
 - Kiểm tra Kiểu dữ liệu(String, Array,Object)
@@ -334,6 +321,45 @@
 
 -funciton(): Nó là một hàm trong js để có thể chạy lại được giống như ngôn ngữ C++
 
+-----------------------------------------------------------------------------Biến toàn bộ + cục bộ ------------------------------------------------------------------------------            
+
+- global :(Biến toàn cục) nó cho  phép bạn  sử dụng gọi ra bên ngoài hàm.
+          VD: sư dụng global  và không sử dụng  global
+                    <?php declare(strict_types=1);
+                    //  Sử dụng global
+                         $tung=10;$bi=30;
+                    function add(){
+                         global $tung,$bi ;
+                         $tung=$tung+$bi;
+                    }
+                    /// Không sử dụng biến global sẽ không thể gọi ra ngoài bạn  cần phải return kết quả ra và không dùng được biến đó bên ngoài.
+                    function add1(){
+                         $tung1=50;$bi1=50;
+                         return $tung1+$bi1;
+                    }
+                    add();
+                    echo($tung);
+                    echo("\n".add1());
+
+- $GLOBALS[] :( Biến toàn bộ) nó cho phép lấy tất cả hàm bên trong lẫn bên trong và ngoài:
+          vd:
+                    $a=10;
+                    $b=30;
+                    function tung(){
+                         $c=$GLOBALS['a']+ $GLOBALS['b'];
+                         echo($c);
+                    }
+                    tung();
+                    echo("\n");
+                    echo($a);
+                    echo("\n");
+                    echo($b);
+          * LƯU Ý: Khác nhau giữa golal và GLOBAS[] là 
+                              ==> global thì cho phép bạn  truy cập được vào  1 BIẾN TOÀN CẦU khi khai báo
+                              ==> GOBALS[] thì cho phép bạn TẤT CẢ CÁC BIẾN ĐƯỢC truyền vào
+
+-----------------------------------------------------------------------------hàm cơ bản  (HAM)------------------------------------------------------------------------------            
+
 - Hàm isset() : Cho phép kiểm tra biến hay  hàm có tồn tại không trả về - kiểu dữ liệu( true/false)
           Vd:
                $arr=['tung','bi','quoc']; 
@@ -353,6 +379,39 @@
                $arr=array('name','tung','class','cntt');
                unset($arr[0]);
                print_r($arr);
+ - empty({Gia_tri_KiemTra}) : Cho phép bạn  kiểm tra  giá trị có rỗng hay  không
+               vd:
+                    $a = "";
+                    if (empty($a)) {
+                    echo "Biến \$a rỗng<br>";
+                    } else {
+                    echo "Biến \$a có giá trị<br>";
+                    }
+
+                    // Kiểm tra xem biến $b có bằng 0 hay không
+                    $b = 0;
+                    if (empty($b)) {
+                    echo "Biến \$b rỗng<br>";
+                    } else {
+                    echo "Biến \$b có giá trị<br>";
+                    }
+               
+               => KetQua:
+                         Biến $a rỗng
+                         Biến $b có giá trị
+
+ - date() : Cho phép bạn  cập nhật thời gian củ thể
+                    echo (date("d/m/y")); 
+                    // d -> ngày  | m ->  tháng | Y -> Năm hiện 2 số cuối của năm 
+
+                    echo (date("d/m/Y"));
+                    // d -> ngày  | m ->  tháng | Y -> Năm hiện số năm cụ thể 
+
+                    echo(date("H:i:sa"));  
+                    // h -> lấy 24 h  | i ->  giây | s -> giây | a -> sáng hoặc chiều
+
+                    echo(date("h:i:sa")); 
+                    // h -> lấy 12 h  | i ->  giây | s -> giây | a -> sáng hoặc chiều
 
 ================================================================= Sắp Xếp (sort)============================================
  - sort() : Sắp xếp theo  thứ tự  tăng dần
@@ -368,4 +427,200 @@
                               echo(print_r($mang));
 
 ================================================================= Chuyển đổi dữ liệu============================================
-- exlode{Giá_trị} , {string}) : Cho  phép bạn  chuyểm dữ liệu  từ array sang string
+- explode({Giá_trị} , {string}) : Cho  phép bạn  chuyểm dữ liệu  từ string sang  array
+- implode({Giá_trị} , {array}) : Cho phép bạn  chuyển dữ liệu từ array sang  string;
+          Vd: exlode , impode
+                    <?php declare(strict_types=1);
+                         $arr=['tung','nguyen','thanh'];
+                         $string='nguyen,thanh, tung';
+                         print_r(explode(',',$string));
+                         echo(implode(',',$arr));
+
+                    ==> Kết quả:
+                                   Array
+                                   (
+                                        [0] => nguyen
+                                        [1] => thanh 
+                                        [2] =>  tung 
+                                   )
+                                   tung,nguyen,thanh
+
+
+================================================================= HTML +  PHP============================================
+------------------------------------------------- Gửi dữ liệu + Lấy dữ liệu-----------------------------
+
+
+ - $_REQUEST['Tên_Name']: Cho phép bạn gửi dữ liệu lên hoặc lấy giữ liệu ( giá trị truyền vào là post hoặc get )
+          ==> Nó kết hợp của POST và GET
+ - $_POST['Tên_Name']   : Cho  phép bạn lấy dữ liệu từ html để sử lý (Bảo mật hơn  GET)
+ - $_GET['Tên_Name']    : Cho phép bạn gửi dữ liệu lên url.... ( nó cx có thể lấy nhưng không bảo mật bằng POST)
+
+               VD: Request+Post+Get
+                    <!-- Request -->
+                              <h3>Request</h3>
+                              <form action="index.php",  method="post"> <!-- tham so  chuyen vao  post hay  get-->
+                                   <input type="text" name='request'>
+                                   <input type="submit" value='Request'>
+                              </form>
+                    <!-- Post -->
+                              <h3>Post</h3>
+                              <form action="index.php",  method="post">
+                                   <input type="text" name='post'>
+                                   <input type="submit" value='Post'>
+                              </form>
+                    <!--  Get -->
+                              <h3>Get</h3>
+                              <form action="index.php",  method="get">
+                                   <input type="text" name='get'>
+                                   <input type="submit" value='Get'>
+                              </form>
+                    <!-- php -->
+                              <?php
+                                   echo($_REQUEST['request']);
+                                   echo($_POST['post']);
+                                   echo($_GET['get']);
+                              ?>
+          *** Lưu ý: Nếu bạn dùng Request cũng được nhưng bạn  phải điền method='post hoặc get'
+          ==>  Xem kĩ  lại ví du trên đẻ hiểu hơn!
+----------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------Gộp File  với nhau ---------------------------------------------------------
+
+ - include "Tên_file_muốn_chèn.php"         : Cho  phép bạn  chèn file  vào một file  mới\thực thi  nhiều lần
+ - include_once "Tên_file_muốn_chèn.php"    : Cho  phép bạn  chèn file  vào một file  mới\nó chỉ thực thi một lần
+          
+                                             ==> Sử khác nhau là:  include  thực thi nhiều lần
+                                                                 include_once thực thi  một lần
+                                        link thamkhao: https://www.w3schools.com/php/php_includes.asp
+
+
+ - require "Tên_file_muốn_chèn"              : Cho phép bạn chèn file vào một file mới \ được thực thi  nhiều lần  
+ - require "Tên_file_muốn_chèn"              : Cho phép bạn chèn file vào một file mới \  chỉ thực thi  một lần
+                                             ==> Sử khác nhau  là: rquire thực thi chương trình nhiều lần
+                                                                   require_oncethực thi  chương trình 1 lần
+                                        link thamkhao: https://www.w3schools.com/php/php_includes.asp
+
+     ** Lưu ý: KHÁC NHAU require VÀ include :
+               require : NẾU FILE KHÔNG TỒN TẠI HOẶC LỖI SẼ KHÔNG THỰC THI CHẠY  CHƯƠNG TRÌNH TRONG FILE MỚI VÀ NGỪNG CHƯƠNG TRÌNH(require_once CŨNG VẬY)
+               include : NẾU FILE KHÔNG TỒN TẠI HOẶC LỖI SẼ BÁO CHỖ LỖI VÀ VẪN CHẠY CHƯƠNG TRÌNH TRONG FILE MỚI  NÓ VẪN TIẾP TỤC CHẠY ( include_once CŨNG VẬY)
+
+----------------------------------------------------------------------------------------------------------------------------
+///////////////////////////////////////////////////////Chuyển trang file  khác trong html///////////////////////////////////////////////////////--------
+-  chuyển trang khác trong html+php
+     vd:
+          header('loaction: {tên_ file_muốn_chuyển.php}');
+
+          ==>  Như  vậy  là chuyển được được chạy  file  trong html
+
+--------------------------------------------------------Làm việc mới file Form----------------------------------------------------------------
+
+- Lấy giá trị củ giới tính:
+                              
+                              <?php 
+                                   echo("Ket qua in ra la: \n\n\n");
+                                   $name=$_REQUEST['name'];
+                                   $gioitinh=$_REQUEST['gioitinh'];
+
+                                   echo("<br>".$name."<br>".$gioitinh);
+
+                              ?>
+                                   <form action="index.php" method="post">
+                                        <label>Name</label>
+                                        <input type="text" placeholder="Name Your" name="name"><br>
+                                        <label>Gioi tinh : </label><br>
+                                        <label>Boy</label>
+                                        <input type="radio" name="gioitinh" value="Boy">
+                                        <label>Girl</label>
+                                        <input type="radio" name="gioitinh" value="Girl">
+                                        <input type="submit">
+                                   </form>
+
+                    
+ - Kiểm tra điều kiện trong form:
+
+          - SERVER :  Nó cho  phép bạn kiểm tra  dữ liệu người dùng
+                    $_SERVER['REQUEST_METHOD']: Lấy phương thức HTTP được sử dụng trong yêu cầu (GET, POST).
+                    $_SERVER['HTTP_HOST']: Lấy tên miền và cổng của máy chủ web.
+                    $_SERVER['SERVER_ADDR']: Lấy địa chỉ IP của máy chủ web.
+                    $_SERVER['HTTP_USER_AGENT']: Lấy thông tin về trình duyệt và hệ điều hành của người dùng.
+                    $_SERVER['SCRIPT_FILENAME']: Lấy tên tệp của tập lệnh PHP đang được thực thi.
+                    $_SERVER['QUERY_STRING']: Lấy chuỗi truy vấn được đính kèm vào URL.
+
+                    VD:
+                              <?php
+                              // Lấy tên miền và cổng của máy chủ web
+                                   $host = $_SERVER['HTTP_HOST'];
+                                   echo "Tên miền và cổng: $host<br>";
+
+                              // Lấy địa chỉ IP của máy chủ web
+                                   $ip = $_SERVER['SERVER_ADDR'];
+                                   echo "Địa chỉ IP: $ip<br>";
+
+                              // Lấy thông tin về trình duyệt và hệ điều hành của người dùng
+                                   $userAgent = $_SERVER['HTTP_USER_AGENT'];
+                                   echo "Thông tin trình duyệt: $userAgent<br>";
+
+                              // Lấy phương thức HTTP được sử dụng trong yêu cầu
+                                   $method = $_SERVER['REQUEST_METHOD'];
+                                   echo "Phương thức HTTP: $method<br>";
+
+                              // Lấy tên tệp của tập lệnh PHP đang được thực thi
+                                   $scriptName = $_SERVER['SCRIPT_FILENAME'];
+                                   echo "Tên tệp tập lệnh: $scriptName<br>";
+
+                              // Lấy chuỗi truy vấn được đính kèm vào URL
+                                   $queryString = $_SERVER['QUERY_STRING'];
+                                   echo "Chuỗi truy vấn: $queryString<br>";
+                              ?>
+
+               VD2:  Dùng SERVER['REQUEST_METHOD]
+                         <form action="php.php" method="post">
+                              <input type="text" name="text" placeholder="name"><br>
+                              <input type="submit">
+                              <?php
+                                   if($_SERVER['REQUEST_METHOD']=='POST'){
+                                        if(empty($_POST['text'])){
+                                             echo('<br>khong co gia tri truyen vao');
+                                        }else{
+                                             echo($_POST['text']);
+                                        }
+                                   }
+                              ?>
+                         </form>
+
+------------------------------------------------------------------------------ Hàm nâng cao----------------------------------------------------------
+ - Kiểm tra điều kiện trong Form  nâng cao: (hàm nâng cao )
+               - preg_match({Ký_tự_đặc_biệt} , {String_kiểmTra}) : Hàm này cho phép bạn  kiểm tra nó chứa kí tự đặc biệt hay không
+                    Vd:
+                         <?php
+                         // Kiểm tra xem chuỗi "email@example.com" có định dạng email hợp lệ hay không
+                              $pattern = "/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/";
+                              $subject = "email@example.com";
+                              if (preg_match($pattern, $subject)) {
+                              echo "Chuỗi \"$subject\" có định dạng email hợp lệ<br>";
+                              } else {
+                              echo "Chuỗi \"$subject\" không có định dạng email hợp lệ<br>";
+                              }
+                         ?>
+
+------------------------------------------------------------------------------ Search (tìm Kiếm)----------------------------------------------------------
+
+                                                  <form action="php.php" method="post">
+                                                            <input type="search" name="text" placeholder="search"><br>
+                                                            <input type="submit">
+                                                            <?php
+                                                                 if($_SERVER['REQUEST_METHOD']=='POST'){
+                                                                      if(empty($_POST['text'])){
+                                                                           echo('<br>khong co gia tri truyen vao');
+                                                                      }else{
+                                                                           if($_POST['text']=='TUNG'){
+                                                                                echo('<br> Tim thay ');
+                                                                                echo($_POST['text']);
+                                                                           }else{
+                                                                                echo('<br>Khong Tim thay ');
+                                                                                echo($_POST['text']);
+                                                                           }
+                                                                      }
+                                                                 }
+                                                            ?>
+                                                       </form>
