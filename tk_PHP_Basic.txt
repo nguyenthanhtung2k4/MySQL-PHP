@@ -213,8 +213,49 @@
                                                             array(3)
                                                        {
                                                   
-     ----------------------------------------------------------------------SỬ LÝ FILE (read file | write file)--------------------------------------------------------
+----------------------------------------------------------------------SỬ LÝ FILE (read file | write file)--------------------------------------------------------
+ - feof({Tên_file}) : Cho  phép bạn  kiểm tra file đang mở đã kết thúc chưa.
+                    link_thamKhao: https://www.w3schools.com/php/func_filesystem_feof.asp
+
+ - fopen ({Tên_file} , {thuộc_tính_file})    : Cho phép bạn mở file theo thuộc tính 
+          * thuộc_tính_file : r  -> chỉ đọc
+                              r+ -> đọc và ghi file
+                              w  -> mở để ghi file và xóa hết nội dung cũ | Nếu file không tồn tại nó sẽ tự tạo file
+                              w+ -> mở để ghi và Đọc file , xóa hết nội dung cũ | Nếu file không tồn tại nó sẽ tự tạo file
+                              a  -> mở để ghi file | Nếu file k tồn tại nó sẽ tự tạo ra file
+                              a+ -> mở để ghi và đọc file | Nếu  file không tồn tại nó sẽ tự tạo file
+
+ - readfile({Tên_file})  : Cho phép bạn đọc file *Nhưng nó đếm cả kí tự (  Không được dùng nhiều)
+ - fread({Tên_file} , filesize{Tên_file});    : Cho phép bạn đọc file( Chú ý: phải truyền đủ 2 tham số vào trong fread)
+ - fgets({Tên_file})     : Cho phép bạn đọc file 
+ 
+          * Sự khác nhau của fread() Và fgets():
+                         + fread() : đọc file cố định khi biết trước kích thước số lượng
+                         + fgets() : đọc file khi không biết trước số lượng số lượng (dùng trong while , for)
      
+                              VD: Dùng trong while
+
+                                        <?php
+                                             $file=fopen('file.txt','r') or die('erro');
+                                             // $doc=fread($file,filesize('file.txt'));
+                                             while(!feof($file)){
+                                                  echo(fgets($file));
+                                             }
+                                             fclose($file);
+                                        ?>
+                              VD2: Cách Dùng file
+
+                                        <?php
+                                             $file=fopen('file.txt','r+') or die('erro'); // open file
+                                             $doc=fread($file,filesize('file.txt')); //doc file
+                                             echo ($doc); //  in ra man hinh
+                                             fclose($file); // đóng file
+                                        ?>
+
+ - fwrite({Tên_file}, {String_muốn_thêm_vào}) : Cho phép bạn viết vào file.
+
+ - Sử lý  Upload FileL:
+                    
 =========================================================================================================================
 
 - Kiểm tra Kiểu dữ liệu(String, Array,Object)
@@ -426,6 +467,7 @@
                               rsort($mang);
                               echo(print_r($mang));
 
+                              
 ================================================================= Chuyển đổi dữ liệu============================================
 - explode({Giá_trị} , {string}) : Cho  phép bạn  chuyểm dữ liệu  từ string sang  array
 - implode({Giá_trị} , {array}) : Cho phép bạn  chuyển dữ liệu từ array sang  string;
@@ -447,6 +489,29 @@
 
 
 ================================================================= HTML +  PHP============================================
+
+------------------------------------------------Gộp File  với nhau (gop file) ---------------------------------------------------------
+
+ - include "Tên_file_muốn_chèn.php"         : Cho  phép bạn  chèn file  vào một file  mới\thực thi  nhiều lần
+ - include_once "Tên_file_muốn_chèn.php"    : Cho  phép bạn  chèn file  vào một file  mới\nó chỉ thực thi một lần
+          
+                                             ==> Sử khác nhau là:  include  thực thi nhiều lần
+                                                                 include_once thực thi  một lần
+                                        link thamkhao: https://www.w3schools.com/php/php_includes.asp
+
+
+ - require "Tên_file_muốn_chèn"              : Cho phép bạn chèn file vào một file mới \ được thực thi  nhiều lần  
+ - require "Tên_file_muốn_chèn"              : Cho phép bạn chèn file vào một file mới \  chỉ thực thi  một lần
+                                             ==> Sử khác nhau  là: rquire thực thi chương trình nhiều lần
+                                                                   require_oncethực thi  chương trình 1 lần
+                                        link thamkhao: https://www.w3schools.com/php/php_includes.asp
+
+     ** Lưu ý: KHÁC NHAU require VÀ include :
+               require : NẾU FILE KHÔNG TỒN TẠI HOẶC LỖI SẼ KHÔNG THỰC THI CHẠY  CHƯƠNG TRÌNH TRONG FILE MỚI VÀ NGỪNG CHƯƠNG TRÌNH(require_once CŨNG VẬY)
+               include : NẾU FILE KHÔNG TỒN TẠI HOẶC LỖI SẼ BÁO CHỖ LỖI VÀ VẪN CHẠY CHƯƠNG TRÌNH TRONG FILE MỚI  NÓ VẪN TIẾP TỤC CHẠY ( include_once CŨNG VẬY)
+
+----------------------------------------------------------------------------------------------------------------------------
+
 ------------------------------------------------- Gửi dữ liệu + Lấy dữ liệu-----------------------------
 
 
@@ -482,29 +547,64 @@
                               ?>
           *** Lưu ý: Nếu bạn dùng Request cũng được nhưng bạn  phải điền method='post hoặc get'
           ==>  Xem kĩ  lại ví du trên đẻ hiểu hơn!
-----------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------File  nâg cao (Nang cao file  )-----------------------------------------
+ - $_FILES[]  : Được sử dụng trong  file : bên dưới là một trong những thuộc tính của file:
+               $_FILES[{Tên_type_file}]['name'];       --> Tên gốc của file yair lên
+               $_FILES[{Tên_type_file}]['type'];       --> Kiểu định dạng của file
+               $_FILES[{Tên_type_file}]['size'];       --> Kích thước của file
+               $_FILES[{Tên_type_file}]['tmp_name'];   --> Đường dẫn tạm thời trên server nơi lưu trữ file đã tải lên trước khi được di chuyển đến vị trí đích.
+               $_FILES[{Tên_type_file}]['error'];      -->  Mã lỗi cho biết trạng thái tải file
+                                                            0: Tải file thành công.
+                                                            1: Lỗi tải file do vượt quá dung lượng cho phép bởi PHP.
+                                                            2: Lỗi tải file do vượt quá dung lượng cho phép bởi form.
+                                                            3: Lỗi tải file chỉ tải được một phần.
+                                                            4: Không có file được tải lên.
+                                                            6: Lỗi di chuyển file tạm thời.
+                                                            7: Không có thư mục tạm thời.
+                                                            8: Lỗi ghi file tạm thời.
+ - move_uploaded_file({địa_chỉ_file_cũ} , {địa_chỉ_lưu_file_mới})  :  Hàm này cho phép bạn di chuyển sang địa chỉ file mới
+ -file_exists({Tên_file})   : Kiểm tra file có tồn tại không
 
-------------------------------------------------Gộp File  với nhau ---------------------------------------------------------
+          VD: sử dụng $_FILES và move_uploaded_file
+                    <form action="index.php" method="post" enctype="multipart/form-data">
+                         <input type="file" name="UploadFile">
+                         <input type="submit" name="gui">
+                    </form>
+                    <?php
+                         $kiemtra=''.basename($_FILES['UploadFile']['name']);
+                         if(isset($_POST['gui'])){
+                              if($_FILES['UploadFile']['size']== 0){
+                                   echo "<script> alert('ban chua chon file')</script>";
+                              // kiem tra kich thuoc file co lon hon  2mb khong 
+                                   // 1mb ~ 1.000.000 bytes
+                              }elseif($_FILES['UploadFile']['size']>2000000){ 
+                                   echo('kich thuoc qua lon');
+                              // kiem tra file ton tai chx
+                              }elseif(file_exists($kiemtra)){
+                                   echo('File da ton tai');
+                              }
+                              else{
+                                   // ten file
+                                   echo($_FILES['UploadFile']['name']);
+                                   // dia chi  chay file trong pc
+                                   echo '<br>';
+                                   echo($_FILES['UploadFile']['tmp_name']);
+                                   // type kieu file
+                                   echo '<br>';
+                                   echo($_FILES['UploadFile']['type']);
+                                   // size kich thuoc file
+                                   echo '<br>';
+                                   echo($_FILES['UploadFile']['size']);
+                                   //  bao  loi  error
+                                   echo '<br>';
+                                   echo($_FILES['UploadFile']['error']);
+                                   // di chuyen duong dan sang duong dan moi
+                                   echo '<br>';
+                                   echo move_uploaded_file($_FILES['UploadFile']['tmp_name'], $_FILES['UploadFile']['name']);
 
- - include "Tên_file_muốn_chèn.php"         : Cho  phép bạn  chèn file  vào một file  mới\thực thi  nhiều lần
- - include_once "Tên_file_muốn_chèn.php"    : Cho  phép bạn  chèn file  vào một file  mới\nó chỉ thực thi một lần
-          
-                                             ==> Sử khác nhau là:  include  thực thi nhiều lần
-                                                                 include_once thực thi  một lần
-                                        link thamkhao: https://www.w3schools.com/php/php_includes.asp
+                              }
+                         }?>
 
-
- - require "Tên_file_muốn_chèn"              : Cho phép bạn chèn file vào một file mới \ được thực thi  nhiều lần  
- - require "Tên_file_muốn_chèn"              : Cho phép bạn chèn file vào một file mới \  chỉ thực thi  một lần
-                                             ==> Sử khác nhau  là: rquire thực thi chương trình nhiều lần
-                                                                   require_oncethực thi  chương trình 1 lần
-                                        link thamkhao: https://www.w3schools.com/php/php_includes.asp
-
-     ** Lưu ý: KHÁC NHAU require VÀ include :
-               require : NẾU FILE KHÔNG TỒN TẠI HOẶC LỖI SẼ KHÔNG THỰC THI CHẠY  CHƯƠNG TRÌNH TRONG FILE MỚI VÀ NGỪNG CHƯƠNG TRÌNH(require_once CŨNG VẬY)
-               include : NẾU FILE KHÔNG TỒN TẠI HOẶC LỖI SẼ BÁO CHỖ LỖI VÀ VẪN CHẠY CHƯƠNG TRÌNH TRONG FILE MỚI  NÓ VẪN TIẾP TỤC CHẠY ( include_once CŨNG VẬY)
-
-----------------------------------------------------------------------------------------------------------------------------
 ///////////////////////////////////////////////////////Chuyển trang file  khác trong html///////////////////////////////////////////////////////--------
 -  chuyển trang khác trong html+php
      vd:
@@ -536,7 +636,7 @@
                                    </form>
 
                     
- - Kiểm tra điều kiện trong form:
+ - Kiểm tra điều kiện trong form: (server)
 
           - SERVER :  Nó cho  phép bạn kiểm tra  dữ liệu người dùng
                     $_SERVER['REQUEST_METHOD']: Lấy phương thức HTTP được sử dụng trong yêu cầu (GET, POST).
@@ -587,22 +687,6 @@
                                    }
                               ?>
                          </form>
-
------------------------------------------------------------------------------- Hàm nâng cao----------------------------------------------------------
- - Kiểm tra điều kiện trong Form  nâng cao: (hàm nâng cao )
-               - preg_match({Ký_tự_đặc_biệt} , {String_kiểmTra}) : Hàm này cho phép bạn  kiểm tra nó chứa kí tự đặc biệt hay không
-                    Vd:
-                         <?php
-                         // Kiểm tra xem chuỗi "email@example.com" có định dạng email hợp lệ hay không
-                              $pattern = "/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/";
-                              $subject = "email@example.com";
-                              if (preg_match($pattern, $subject)) {
-                              echo "Chuỗi \"$subject\" có định dạng email hợp lệ<br>";
-                              } else {
-                              echo "Chuỗi \"$subject\" không có định dạng email hợp lệ<br>";
-                              }
-                         ?>
-
 ------------------------------------------------------------------------------ Search (tìm Kiếm)----------------------------------------------------------
 
                                                   <form action="php.php" method="post">
@@ -624,3 +708,21 @@
                                                                  }
                                                             ?>
                                                        </form>
+------------------------------------------------------------------------------ Hàm nâng cao (ham nang cao loc chuoi string)----------------------------------------------------------
+ - Kiểm tra điều kiện trong Form  nâng cao: (hàm nâng cao )
+               - preg_match({Ký_tự_đặc_biệt} , {String_kiểmTra}) : Hàm này cho phép bạn  kiểm tra nó chứa kí tự đặc biệt hay không
+                    Vd:
+                         <?php
+                         // Kiểm tra xem chuỗi "email@example.com" có định dạng email hợp lệ hay không
+                              $pattern = "/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/";
+                              $subject = "email@example.com";
+                              if (preg_match($pattern, $subject)) {
+                              echo "Chuỗi \"$subject\" có định dạng email hợp lệ<br>";
+                              } else {
+                              echo "Chuỗi \"$subject\" không có định dạng email hợp lệ<br>";
+                              }
+                         ?>
+
+
+==============================================================COOKIES (cookies)============================================================================
+
