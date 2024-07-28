@@ -1,3 +1,16 @@
+////////////////////////////////////////////////////////  Một số hàm gợi ý cần nhớ ////////////////////////////////////////////////////////
+          - set :  tạo dữ liệu
+          - get :  lấy dữ liệu
+          - unset: Xóa dữ liệu ( Xóa trong SESSION ; xóa trong mảng ,  trong array....)
+          - session_destory  (Xóa tất cả các session)
+          - is  :  Kiểm tra cái gì đó ( như : isset() : kiểm tra hàm có tồn tại hay không)
+          - move:  Di chuyển hoặc xóa 
+          - exits: Kiểm tra có tồn tại không
+
+     -------------------------------------------------------------------------------------------------------------------------------------------------------------
+          - $_      : Thường là hàm viết sẵn để gọi các giá trị ra : ($_COOKIES ; $_REQUEST ; $_POST ; $_GET ; $_FILES ; $_SEVER ; $_SESION )
+
+
 //////////////////////////////////////////////////////// Một số câu lệnh , hàm cần biết ////////////////////////////////////////////////////////
 
 - Muốn hàm chở lên nghiêm  ngặt hơn cần hàm để kiểm tra nó:
@@ -212,7 +225,8 @@
                                                             string(2) "25"      
                                                             array(3)
                                                        {
-                                                  
+                                             
+
 ----------------------------------------------------------------------SỬ LÝ FILE (read file | write file)--------------------------------------------------------
  - feof({Tên_file}) : Cho  phép bạn  kiểm tra file đang mở đã kết thúc chưa.
                     link_thamKhao: https://www.w3schools.com/php/func_filesystem_feof.asp
@@ -636,7 +650,7 @@
                                    </form>
 
                     
- - Kiểm tra điều kiện trong form: (server)
+ - Kiểm tra điều kiện trong form: (server $_server)
 
           - SERVER :  Nó cho  phép bạn kiểm tra  dữ liệu người dùng
                     $_SERVER['REQUEST_METHOD']: Lấy phương thức HTTP được sử dụng trong yêu cầu (GET, POST).
@@ -722,7 +736,119 @@
                               echo "Chuỗi \"$subject\" không có định dạng email hợp lệ<br>";
                               }
                          ?>
+------------------------------------------------------------------Xử lý string nâng cao(string  nang cao)------------------------------------------------------------
+ - filter_var()    : Cho phép bạn kiểm tra và lọc dữ liệu đầu vào 
+               FILTER_VALIDATE_EMAIL: Kiểm tra xem một chuỗi có phải là một địa chỉ email hợp lệ hay không.
+               FILTER_VALIDATE_INT: Kiểm tra xem một chuỗi có phải là một số nguyên hợp lệ hay không.
+               FILTER_VALIDATE_FLOAT: Kiểm tra xem một chuỗi có phải là một số thực hợp lệ hay không.
+               FILTER_VALIDATE_URL: Kiểm tra xem một chuỗi có phải là một URL hợp lệ hay không.
+               FILTER_SANITIZE_STRING: Loại bỏ các ký tự đặc biệt khỏi một chuỗi.
+               FILTER_SANITIZE_EMAIL: Loại bỏ các ký tự đặc biệt khỏi một địa chỉ email.
+               FILTER_SANITIZE_NUMBER_INT: Loại bỏ tất cả các ký tự không phải số khỏi một chuỗi.
+               FILTER_SANITIZE_NUMBER_FLOAT: Loại bỏ tất cả các ký tự không phải số và dấu chấm thập phân khỏi một chuỗi.
 
+               VD:
+                         <?php
+                         // Kiểm tra xem email có hợp lệ không
+                              $email = "example@example.com";
+                              if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                                   echo "Địa chỉ email hợp lệ.";
+                              } else {
+                                   echo "Địa chỉ email không hợp lệ.";
+                              }
+
+                         // Lọc một chuỗi để chỉ còn các chữ số
+                              $string = "Hello123World456";
+                              $filtered_string = filter_var($string, FILTER_SANITIZE_NUMBER_INT);
+                              echo $filtered_string; // Kết quả: 123456
+                    
+                    ==> Các hàm khác tương tự như vậy
 
 ==============================================================COOKIES (cookies)============================================================================
 
+- Thiết lập Cookies :
+                         setcookie({Name},  {Value}, time() + {Thời_gian_Cookies}); 
+                              -> Khởi tạo thời Cookies
+- Xóa Cookis        :
+                         Chỉ cần thay dấu "+"  thành "-"  ở phần thời gian là nó sẽ tự xóa
+- Gọi lại hàm       :
+                         $_COOKIE[{Name}] 
+                              -> Gọi lại Cookies lấy lại Value
+                    VD:
+                                        // thiết lập
+                                             setcookie('username', 'JohnDoe', time() + 3600); // Cookie tồn tại trong 36000 giây= 1giờ
+                                        // xóa cookies
+                                             setcookie('username', 'JohnDoe', time() - 3600); // Cookie tồn tại trong 36000 giây= 1giờ
+                                        //  gọi hàm      
+                                             if(isset($_COOKIE['username'])) {
+                                             echo "Username: " . $_COOKIE['username'];
+                                             }
+
+==============================================================SESSION (session)============================================================================
+- Thiết lập Session:    
+                         session_start();
+                              ->  Khởi tạo
+                         $_SESSION{Name} = {Value}
+                              -> Khai báo giá trị của session
+- Hiện thị ra sesion:
+                         echo($_SESSION[{Name}]);
+- Xóa SESSION      :
+                         unset($_SESSION[{Name}]);
+                              -> Xóa một session
+                         session_destory(); 
+                              -> Xóa tất cả các session
+
+                    VD:
+
+                              <?php
+                                   session_start();
+                                   $_SESSION['username'] = 'John Doe';
+                                   echo "Tên người dùng: " . $_SESSION['username'];
+                                   session_destroy();
+                                   if (isset($_SESSION['username'])) {
+                                   echo "Biến session vẫn tồn tại";
+                                   } else {
+                                   echo "Biến session đã bị xóa";
+                                   }
+                              ?>
+
+==============================================================PAGE_LAYOUT (page_layout)============================================================================
+
+ --> Tham khoản ở file tên ('tk_Page_Layout.php')
+
+          VD:
+                         <!DOCTYPE html>
+                              <html lang="en">
+                              <head>
+                                   <meta charset="UTF-8">
+                                   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                                   <title>Home</title>
+                              </head>
+                              <body>
+                                   <li><a href="index.php?page_layout=home">Home</a></li>
+                                   <li><a href="index.php?page_layout=sanpham">SanPham</a></li>
+                                   <li><a href="index.php?page_layout=lienhe">LienHe</a></li>
+                              </body>
+                              </html>
+                              <?php
+                                   if(isset($_GET['page_layout'])) // kiem tra co tin tai hay  khong
+                                   {
+                                        switch($_GET['page_layout']){
+                                             case 'home';{
+                                                  echo('home  la  tao');
+                                                  //   Có thể thêm  include .... để thực hiện từng page  riêng một
+                                                  break;
+                                             };
+                                             case 'sanpham';{
+                                                  echo('sanPham  la  tao');
+                                                  //   Có thể thêm  include .... để thực hiện từng page  riêng một
+                                                  break;
+                                             };
+                                             case 'lienhe';{
+                                                  echo('lienHe  la  tao');
+                                                  //   Có thể thêm  include .... để thực hiện từng page  riêng một
+                                                  break;
+                                             };
+                                        }
+                                   }
+                              ?>
