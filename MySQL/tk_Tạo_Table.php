@@ -1,6 +1,6 @@
 <?php
      // kết nối  database
-     include('tk_Contac_DataBase.php');
+     include('tk_Connect_DataBase.php');
      // tạo   database  // tên cơ sở  dữ liệu
      $sql ="CREATE TABLE account(
           id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY, --  ham cho id tu dong
