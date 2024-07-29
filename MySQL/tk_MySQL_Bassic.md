@@ -7,15 +7,87 @@
           - DELETE  :  Xóa dữ liệu
           - UPDATE  :  Thay đổi dữ liệu
 
-///////////////////////////////////////////////    Các từ quan trọng SQL  /////////////////////////////////////////////////
+///////////////////////////////////////////////   Câu lệnh Quan trọng SQL  /////////////////////////////////////////////////
           - WHERE   :   Lấy các giá trị có cùng tên 
 
 ```php
-          WHERE id=1;
-          ===> Kết quả trả về những dữ liệu nào có cùng id=1;
+                    WHERE id=1;
+                    ===> Kết quả trả về những dữ liệu nào có cùng id=1;
 ```
 
+          - AND      :  ĐI cùng với WHERE và kết hợp thêm điều kiện  cho  nó 
 
+```php
+                    WHERE name='tung' AND id=1; 
+                    ===> Kết quả trả về tên là tùng và có thêm id=1  thì nó hiện ra.
+```
+
+          - OR       : Có hoặc không điều kiện  cần
+
+```php
+                    WHERE id=0 OR name='tung';
+                    ===> Khi thực hiện nếu nó k tìm thấy id=0  thì nó sẽ tìm tiếp name='tung';
+                    ====>Tìm thấy thì in ra.
+```
+
+          - LIKE     : Câu lệnh tìm kiếm trong SQL
+
+```php
+                    WHERE taikhoan LIKE  '%tung%';
+                    ===> Nó sẽ tìm trong Data taikhoan  có giá trị nào tên tung hay  không
+                    ====> Nếu có thấy giá trị như tung thì nó sẽ tìm hiện ra.
+```
+
+          - ORDER BY  : Hiệnn thị theo danh sách tăng hoặc giảm
+
+```php
+                    ORDER BY {Giá_hoặc_ID}  ASC 
+                    --> Hiện thị theo tăng dần
+
+                    ORDER BY {Giá_hoặc_ID}  DESC 
+                    --> Hiện thị theo giảm dần
+
+                    ==> Hàm ORDER thường đc dùng trong  tăng hoặc giảm.
+```
+
+          - LIMIT     : Kiểm soát số lượng dữ liệutrả về
+
+```php
+                    LIMIT 0,10;
+                    --->  0 là số bắt đầu;
+                    --->  10là số kết thúc;
+                    ===> Nó sẽ  hiện thị số lượng mà bạn yêu câu khi lấy data hiện ra bên ngoài.
+```
+
+          - RAND()    : Random dữ liệu đầu ra | Nó đi với ORDER BY
+
+```php
+                    ORDER BY RAND() LIMIT 0,10;
+                    ===> Lấy ngẫu nhiên 10  giá trị đầu và hiện thị bất kì không theo tăng giảm ...
+```
+
+          - INNER JOIN : Kết hợp  2 bảng trong sql  lại với nhau.
+
+
+```php
+               CÚ pháp:
+                    SELECT column_name(s)
+                    FROM table1
+                    INNER JOIN table2
+                    ON table1.column_name = table2.column_name;
+               VD:
+                    SELECT ho,ten,mk,pass 
+                    FORM tung1 INNER JOIN tung2
+                    ON tung1.id=tung2.id;
+
+                    ===> Select là lấy các value 
+                         Form   là  đến bảng có tên tung1
+                         INNER JOIN là kết nối tung1 với tung2
+                         ON  là lấy id giống nhau để nối lại
+
+                    --> LINK: https://www.w3schools.com/mysql/mysql_join_inner.asp
+                              https://www.youtube.com/watch?v=PXEn_CFlL2g&list=PLaevEBkXyvnXEMoe6ZHFJGjPDb_eCCVNc&index=92
+```
 
 ///////////////////////////////////////////////    Các từ hay dùng  ///////////////////////////////////////////////////////
 
@@ -103,3 +175,9 @@
 ![VD:Thay_đổi_giá_trị_DataBase](./tk_Thay_đổi_dữ_liệu.php)
 
      * Lưu ý: khi viết code để sử đổi chú ý đến các dấu  chấm  phẩy  tránh để bị lỗi code không chạy được.
+
+
+
+     https://www.youtube.com/watch?v=aM-B-siKr-Y&list=PLaevEBkXyvnXEMoe6ZHFJGjPDb_eCCVNc&index=100
+     https://www.w3schools.com/php/func_mysqli_fetch_array.asp
+     https://gemini.google.com/app/701c95f8cc3c7309?hl=vi
