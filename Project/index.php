@@ -62,7 +62,7 @@
                     <p><?php echo $row['sanpham']?></p>
                </div>
                <div class="col value_account">
-                    <img src="./img/<?php echo $row['anh']?>" alt="img">
+                    <img width="50px" height="50px" src="./img/<?php echo $row['anh']?>" alt="img">
                </div>
                <div class="col value_account">
                     <p><?php echo $row['gia']?></p>

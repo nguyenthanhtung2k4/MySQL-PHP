@@ -89,9 +89,22 @@
                               https://www.youtube.com/watch?v=PXEn_CFlL2g&list=PLaevEBkXyvnXEMoe6ZHFJGjPDb_eCCVNc&index=92
 ```
 
-///////////////////////////////////////////////    Các từ hay dùng  ///////////////////////////////////////////////////////
+///////////////////////////////////////////////    Các Hàm lấy  dữ liệu DATABASE mysqli_fetch  ///////////////////////////////////////////////////////
+          - mysqli_fetch_array()   : Cho phép bạn linh hoạt trong việc truy cập dữ liệu bằng cả TÊN cột và chỉ SỐ.(Cả tên và chỉ số)
+                                   ===> array thường được sử dụng nhiều nhất trong mysqli_fetch
+          - mysqli_fetch_assoc()   : Thường được sử dụng khi bạn biết TÊN các cột và muốn truy cập chúng bằng tên.(Theo tên)
+          - mysqli_fetch_row()     : Thường được sử dụng khi bạn KHÔNG biết tên các cột HOẶC muốn truy cập dữ liệu bằng chỉ SỐ.(Chỉ số)
+          - mysqli_fetch_object()  : Thường được sử dụng khi bạn muốn tạo các đối tượng từ dữ liệu lấy được.(ít được sử dụng)
 
-          - mysql_query() : Cho phép bạn  truy vấn đến  MySQL( như kiểm tra kết nối DataBase hay là tạo ra Database)
+     ==> mysqli_fetch___ được hiểu đơn giản nó là chức năng để lấy dữ liệu được nhà phát triển phát hành.
+
+![VD:mysqli_fetch](./tk_mysqli_fetch____.php)
+
+///////////////////////////////////////////////    Các từ hay dùng DATABASE ///////////////////////////////////////////////////////
+
+          - mysql_query(link,query) : Cho phép bạn  truy vấn đến  MySQL( như kiểm tra kết nối DataBase hay là tạo ra Database)
+
+          - mysqli_multi_query(link, query): Thực thi nhiều truy vấn SQL cùng một lúc.
 
 ///////////////////////////////////////////////    Kết nối Database (contac.conn)    //////////////////////////////////
           
@@ -102,6 +115,9 @@
           - mysql_query() : Cho phép bạn  truy vấn đến  MySQL( như kiểm tra kết nối DataBase hay là tạo ra Database)
                     
 [VD:Kết_Nối_Data_Base](./tk_Connect_DataBase.php)
+///////////////////////////////////////////////    Đóng Database (contac.conn)    //////////////////////////////////
+
+          - mysqli_close(link): Đóng kết nối đến cơ sở dữ liệu.
 
 ///////////////////////////////////////////////    Tạo DateBase Mới (database)  //////////////////////////////////////////////////
 
@@ -167,17 +183,20 @@
 
 ![VD:Delete_DataBase](./tk_Delete_DataBase.php)
      
-     ------------------------------------------Thay đổi dữ liệu (update set)------------------------------------------------------
+     ------------------------------------------Thay đổi dữ liệu (update set edit)------------------------------------------------------
 
           - UPDATE {Tên_bảng} SET  {Dữ_Liệu}  WHERE  {Địa_chỉ_thay_đổi}  
                     -> Hàm này cho phép bạn thay đổi giá trị  trong DataBase
 
-![VD:Thay_đổi_giá_trị_DataBase](./tk_Thay_đổi_dữ_liệu.php)
+![VD:Thay_đổi_giá_trị_DataBase](./tk_Sửa_đổi_dữ_liệu.php)
 
      * Lưu ý: khi viết code để sử đổi chú ý đến các dấu  chấm  phẩy  tránh để bị lỗi code không chạy được.
 
+///////////////////////////////////////////////    Các hàm khác trong Database(mysqli)  ////////////////////////////////////////////
 
-
-     https://www.youtube.com/watch?v=aM-B-siKr-Y&list=PLaevEBkXyvnXEMoe6ZHFJGjPDb_eCCVNc&index=100
-     https://www.w3schools.com/php/func_mysqli_fetch_array.asp
-     https://gemini.google.com/app/701c95f8cc3c7309?hl=vi
+          - mysqli_num_rows(result): Trả về số lượng hàng trong kết quả truy vấn.
+          - mysqli_insert_id(link): Trả về ID của bản ghi vừa được chèn.
+          - mysqli_affected_rows(link): Trả về số lượng hàng bị ảnh hưởng bởi truy vấn UPDATE, DELETE hoặc INSERT.
+          - mysqli_error(link): Trả về thông báo lỗi của truy vấn gần nhất.
+          - mysqli_real_escape_string(link, string): Thực hiện thoát các ký tự đặc biệt trong một chuỗi để ngăn chặn các cuộc tấn công tiêm SQL.
+          
