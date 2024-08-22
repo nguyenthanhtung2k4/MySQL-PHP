@@ -456,6 +456,8 @@
                          Biến $b có giá trị
 
  - date() : Cho phép bạn  cập nhật thời gian củ thể
+                    date_default_timezone_set('Asia/Ho_Chi_Minh');
+                    /// chon vung VIETNAM
                     echo (date("d/m/y")); 
                     // d -> ngày  | m ->  tháng | Y -> Năm hiện 2 số cuối của năm 
 
